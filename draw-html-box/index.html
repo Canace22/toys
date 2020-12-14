@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>把页面上的所有盒的轮廓画到一个 canvas 元素上</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        background: #000;
+        color: #fff;
+      }
+
+      .canvas {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body onload="draw()">
+    <div class="pie">
+      <h1>Hello, welcome to my GitHub profile</h1>
+      <p>Here are a few things that describe me:</p>
+      <img src="./1.png" alt="img">
+      <ul>
+        <li>
+          💼 I'm currently working full-time at Readboy as a web developer
+        </li>
+        <li>📝 I maintain a web development blog at canace.site</li>
+        <li>
+          ⌨️ I spend most of my time writing JavaScript on the front-end,
+          sometimes witing back-end whith Go or Node
+        </li>
+        <li>
+          💬 The two social platforms I'm active on are 掘金 and 知乎, where I
+          mostly post about web development. Feel free to connect and reach out
+          to me there.
+        </li>
+      </ul>
+      <p>The content below is my new blog</p>
+      <ul>
+        <li>CSS 小技巧</li>
+        <li>开始用 Beego 写 Http 服务</li>
+        <li>Egg 快速上手</li>
+        <li>第一个 Go 程序</li>
+        <li>Typescript 笔记</li>
+        <li>从零开始撸一个 Tinymce 图片上传插件</li>
+        <li>Centos 服务器登录配置</li>
+        <li>Flow简易教程</li>
+        <li>微信小程序小技巧</li>
+        <li>Vue 单元测试</li>
+      </ul>
+    </div>
+    <canvas id="myCanvas" class="canvas"></canvas>
+    <script src="./draw.js"></script>
+    <script>
+      var drawElementBounds = new DrawElementBounds();
+      drawElementBounds.init({ele:'#myCanvas', color: 'red'});
+
+      function draw() {
+        drawElementBounds.draw();
+      }
+    </script>
+  </body>
+</html>
