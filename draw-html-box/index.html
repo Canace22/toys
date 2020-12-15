@@ -22,7 +22,7 @@
       }
     </style>
   </head>
-  <body onload="draw()">
+  <body >
     <div class="pie">
       <h1>Hello, welcome to my GitHub profile</h1>
       <p>Here are a few things that describe me:</p>
@@ -62,7 +62,7 @@
       var drawElementBounds = new DrawElementBounds();
       drawElementBounds.init({ele:'#myCanvas', color: 'red'});
 
-      function draw() {
+      window.onload = () => {
         drawElementBounds.draw();
       }
     </script>
