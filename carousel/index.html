@@ -45,6 +45,7 @@
     var itemNode = document.querySelector('.item')
     function carousel (el, items,time) {
       var curIndex = -1;
+      el.textContent = items[1]
       setInterval(() => {
         curIndex++
         if (curIndex < items.length) {
