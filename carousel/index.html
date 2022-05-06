@@ -1,95 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      html,
-      body,
-      img {
-        height: 100%;
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      background: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+    }
+
+    @keyframes move {
+      0% {
+        transform: translateX(100%);
       }
-      body {
-        margin: 0;
+
+      100% {
+        transform: translateX(-100%);
       }
-      .container {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
-      .left,
-      .right {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        background: brown;
-        border-radius: 50%;
-      }
-      img {
-        width: 100%;
-      }
-      .left {
-        left: 0;
-      }
-      .right {
-        right: 0;
-      }
-      .fade-in {
-        animation: slide-in 0.5s linear;
-      }
-      @keyframes slide-in {
-        from {
-          transform: translateX(450px);
+    }
+
+    .wrap {
+      padding: 0 20px;
+      height: 30px;
+      line-height: 30px;
+      animation: move 5s linear infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <p class="wrap">
+      <span class="item"></span>
+    </p>
+  </div>
+  <script>
+    var map = ['剩余时长: 05 小时 20 分钟', '包月截止时间：2022 年 05 月 21 日']
+    var itemNode = document.querySelector('.item')
+    function carousel (el, items,time) {
+      var curIndex = -1;
+      setInterval(() => {
+        curIndex++
+        if (curIndex < items.length) {
+          el.textContent = items[curIndex]
+        } else {
+          curIndex = -1;
         }
-        to {
-          transform: translateX(0px);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="left" onclick="swap(0)"></div>
-      <img id="imgDom" src="./img/508503.jpg" alt="1" />
-      <div class="right" onclick="swap(1)"></div>
-    </div>
-    <script>
-      const imgMap = [
-        './img/508503.jpg',
-        './img/723741.jpg',
-        './img/744837.png',
-        './img/935739.jpg',
-      ];
-      let curIdx = 0;
-      function swap(val) {
-        const dom = document.querySelector('#imgDom');
-        // dom.classList.remove('fade-in');
-        // console.log(dom.classList);
-        switch (val) {
-          case 0:
-            if (curIdx > 0) {
-              curIdx -= 1;
-            } else {
-              curIdx = imgMap.length - 1;
-            }
-            break;
-          case 1:
-            if (curIdx < imgMap.length - 1) {
-              curIdx += 1;
-            } else {
-              curIdx = 0;
-            }
-            break;
-          default:
-            break;
-        }
-        // dom.classList.add('fade-in');
-        dom.src = imgMap[curIdx];
-        dom.style.animation = 'slide-in 0.5s linear'
-        // dom.classList.remove('fade-in');
-        // dom.classList.add('fade-in');
-      }
-    </script>
-  </body>
+      }, time||5000);
+    }
+    carousel(itemNode,map)
+  </script>
+</body>
+
 </html>
